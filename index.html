@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101d26"><title>BONE LAB | 3D Anatomy Recall</title>
+<style>
+:root{--bg:#09141c;--panel:#111f29;--panel2:#172834;--border:#2c3c46;--text:#f5f4eb;--muted:#95a5ab;--accent:#d6ecb0;--gold:#efc887;--red:#f59f93;--blue:#a2d5ec;--radius:18px}*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--text);background:var(--bg)}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}button:disabled{opacity:.4;cursor:not-allowed}a{color:var(--accent)}#app{height:100dvh;min-height:620px;display:flex;flex-direction:column}.header{min-height:72px;display:flex;align-items:center;padding:12px 28px;border-bottom:1px solid var(--border);justify-content:space-between;gap:16px;background:#0d1a23;z-index:10}.logo{display:flex;gap:13px;align-items:center}.mark{width:40px;height:40px;border:1px solid #738775;border-radius:12px;color:var(--accent);display:grid;place-items:center;font-size:22px}.brand{font-size:19px;letter-spacing:.12em;font-weight:800}.brand small{display:block;letter-spacing:.1em;font-size:10px;color:var(--muted);margin-top:2px;font-weight:600}.topnav{display:flex;gap:7px}.topnav button{border:0;color:#acb6b7;background:transparent;padding:11px 16px;border-radius:10px;font-size:13px;font-weight:700}.topnav button.on{background:#d6ecb0;color:#14221c}.count{font-size:12px;color:#c9d0c2;border:1px solid #3b4b4a;background:#14242c;border-radius:40px;padding:9px 13px}.workspace{flex:1;min-height:0;display:grid;grid-template-columns:300px minmax(350px,1fr) 310px}.left,.right{min-height:0;overflow-y:auto;scrollbar-color:#465a61 transparent}.left{background:var(--panel);border-right:1px solid var(--border);padding:23px 18px 18px}.right{background:var(--panel);border-left:1px solid var(--border);padding:25px 23px}.eyebrow{font-size:10px;letter-spacing:.2em;color:var(--gold);font-weight:800}.left h2{font-size:22px;line-height:1.25;margin:8px 0 6px}.muted{color:var(--muted)}.small{font-size:12px}.search{width:100%;border:1px solid #3a4b55;background:#0b1820;color:white;border-radius:11px;padding:12px 14px;outline:0;margin-top:19px}.search::placeholder{color:#657782}.regionbar{display:flex;flex-wrap:wrap;gap:7px;margin:17px 0}.chip{background:transparent;border:1px solid #38505a;border-radius:30px;padding:7px 11px;font-size:11px;color:#c0cdd0}.chip.on{background:#d6ecb0;border-color:#d6ecb0;color:#14221c;font-weight:800}.term-list{display:flex;flex-direction:column;gap:5px}.grouphead{font-size:10px;color:#738b93;letter-spacing:.12em;font-weight:800;margin:18px 0 8px}.term{display:flex;text-align:left;align-items:center;width:100%;gap:12px;background:transparent;border:1px solid transparent;color:#e9ece4;border-radius:11px;padding:11px 9px}.term:hover{background:#1a2c36}.term.on{background:#233739;border-color:#648174}.term-index{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:#24343d;color:#7895a2;font-size:10px;flex-shrink:0}.term.on .term-index{background:var(--accent);color:#1c2b23}.term-name{font-size:13px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}.term-sub{font-size:11px;color:var(--muted);margin-top:3px}.done-dot{font-size:12px;color:var(--accent);margin-left:auto}.main{min-width:0;position:relative;overflow:hidden;background:radial-gradient(ellipse at 48% 40%,#273943 0%,#162630 48%,#0b1921 100%)}#viewport{position:absolute;inset:0}#viewport canvas{width:100%;height:100%;display:block;touch-action:none}.mainhead{pointer-events:none;position:absolute;left:28px;top:23px;right:28px;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.scene-title{font-family:Georgia,'Times New Roman',serif;font-size:26px;font-style:italic}.scene-sub{font-size:11px;color:#9eb1b7;margin-top:6px}.scene-pill{font-size:11px;color:#d3e8db;border:1px solid #5b736d;padding:9px 11px;border-radius:35px;background:#12262ecc}.viewer-bottom{pointer-events:none;position:absolute;left:20px;right:20px;bottom:22px;display:flex;justify-content:space-between;align-items:end;gap:10px;z-index:3}.view-hint{font-size:11px;color:#a8b9bd;background:#11232bbf;border:1px solid #3b4c55;border-radius:10px;padding:10px 13px;max-width:275px;line-height:1.5}.tools{pointer-events:auto;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.iconbtn{height:38px;min-width:38px;border-radius:10px;background:#1e313ddd;color:#edf2eb;border:1px solid #536974;padding:0 11px;font-size:12px;font-weight:700}.iconbtn:hover{background:#334c57}.loading{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;flex-direction:column;gap:13px;pointer-events:none;text-align:center;padding:25px}.loading strong{font-family:Georgia,serif;font-size:32px;color:#f3f4e9;font-weight:500}.loading p{font-size:12px;max-width:300px;line-height:1.8;color:#a0b2b8;margin:0}.loader{height:4px;width:180px;border-radius:8px;overflow:hidden;background:#263942}.loader b{height:100%;display:block;background:var(--accent);width:5%;transition:width .2s}.loading.off{display:none}.side-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.mini{font-size:10px;letter-spacing:.1em;color:#93a7aa}.big-en{font-size:34px;letter-spacing:-.04em;line-height:1.07;margin:13px 0 10px;overflow-wrap:anywhere}.ko{font-size:14px;color:#9bb1b3}.divider{border-top:1px solid #344751;margin:24px 0}.subject{font-size:12px;color:#e3c58e;letter-spacing:.06em;font-weight:750;margin-bottom:12px}.group-name{font-size:13px;color:#a9babe;margin:9px 0 14px}.primary{width:100%;border:0;border-radius:12px;background:var(--accent);color:#12251c;padding:13px 16px;font-weight:850;font-size:13px}.secondary{width:100%;border:1px solid #4a626a;border-radius:12px;background:#21323d;color:#edf3ee;padding:12px 16px;font-weight:750;font-size:12px}.secondary:hover{border-color:var(--accent)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.switchline{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:#b6c5c8}.toggle{appearance:none;position:relative;width:39px;height:23px;flex-shrink:0;background:#41545e;border-radius:99px;cursor:pointer}.toggle:checked{background:#9ac0a2}.toggle:after{content:'';position:absolute;width:17px;height:17px;top:3px;left:3px;background:white;border-radius:50%;transition:.15s}.toggle:checked:after{left:19px}.progress{height:7px;border-radius:9px;background:#31424b;overflow:hidden;margin:10px 0}.progress>div{height:100%;background:var(--accent);width:0;transition:.2s}.metric{display:flex;justify-content:space-between;font-size:12px;color:#abbcbd}.metric b{color:#ecf4ed}.footnote{font-size:10px;color:#758f98;line-height:1.6;margin-top:24px}.feedback{min-height:21px;font-size:12px;margin:11px 0 0}.feedback.ok{color:var(--accent)}.feedback.bad{color:var(--red)}.answer{width:100%;padding:13px 14px;background:#091720;color:white;border-radius:11px;border:1px solid #48616a;font-size:17px;outline:0}.answer:focus{border-color:var(--accent)}.quiz-card{padding:15px;background:#1b313b;border:1px solid #354a52;border-radius:14px}.question-ko{color:var(--accent);font-size:19px;font-weight:800;margin:7px 0 16px}.quiz-number{font-size:11px;color:var(--gold)}.qmode{display:flex;gap:6px;margin:14px 0 23px}.qmode button{flex:1;border:1px solid #3a5059;border-radius:10px;padding:10px 4px;background:#1b2c35;color:#a9bdc0;font-weight:700;font-size:11px}.qmode button.on{color:#1e3124;background:#d6ecb0;border-color:#d6ecb0}.empty{padding:24px 10px;text-align:center;color:#91a8b0;font-size:13px;line-height:1.7}.outline{font-size:11px;color:var(--gold);padding:8px 10px;background:#2a3335;border-radius:8px;display:inline-block}.label-target{font-size:12px;color:#9db2b5;padding:12px;background:#1a2c34;border-radius:10px;margin-top:13px}.bookmark{color:var(--accent);border:1px solid #4d6d66;background:transparent;font-size:12px;border-radius:8px;padding:8px}.notice{font-size:11px;color:#c3d1d2;background:#1b333a;border:1px solid #34535b;padding:10px 12px;border-radius:10px;margin-top:12px;line-height:1.5}.hintblock{padding:9px 0 0;font-size:11px;color:#8ba2aa}.find-prompt{font-size:14px;color:#dbeade;line-height:1.6;margin-bottom:14px}.quiz-action{margin-top:13px;display:flex;gap:8px}.quiz-action button{flex:1}.reveal{font-size:13px;color:var(--accent);padding:12px 0}.test-title{font-size:12px;color:#dfbd7d;font-weight:800;letter-spacing:.09em}.subtle{color:#70878f;font-size:10px}.none{display:none!important}#model-fallback{display:none;margin-top:10px}#model-fallback a{color:var(--accent)}.viewmode{display:flex;gap:7px;margin-top:16px}.viewmode button{border:1px solid #3c515b;border-radius:9px;color:#bdccd0;background:#20343e;font-size:11px;padding:10px 13px}.viewmode button.on{color:#12201d;background:#d6ecb0;border-color:#d6ecb0}.explore-only{}.test-only{display:none}.mistakes-only{display:none}@media(max-width:1130px){.workspace{grid-template-columns:235px minmax(320px,1fr) 275px}.left{padding:18px 12px}.right{padding:22px 15px}.big-en{font-size:29px}.mainhead{left:18px;top:20px}}@media(max-width:780px){#app{height:100%;min-height:100dvh}.header{padding:11px 13px;min-height:61px}.brand{font-size:15px}.mark{width:34px;height:34px;font-size:17px}.topnav button{padding:8px 11px;font-size:11px}.count{display:none}.workspace{display:flex;flex-direction:column;overflow:visible}.left{order:2;min-height:unset;max-height:none;overflow:visible;padding:20px 15px}.main{order:1;min-height:55vh;height:55vh}.right{order:3;overflow:visible;padding:20px 16px;border-left:0;border-top:1px solid var(--border)}.left h2{font-size:20px}.term-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}.grouphead{grid-column:1/-1;margin-bottom:1px}.term{padding:8px 6px}.term-name{font-size:12px}.term-sub{font-size:10px}.term-index{width:21px;height:21px}.mainhead{top:15px;left:15px;right:15px}.scene-title{font-size:21px}.scene-pill{font-size:9px}.viewer-bottom{bottom:12px;left:12px;right:12px}.view-hint{font-size:9px;padding:8px;max-width:155px}.iconbtn{min-width:30px;height:33px;padding:0 8px;font-size:11px}.big-en{font-size:33px}.loading strong{font-size:25px}}@media(max-width:390px){.term-list{grid-template-columns:1fr}.logo{gap:7px}.brand{font-size:13px}.topnav button{padding:8px 7px}}
+
+#landmark-layer{position:absolute;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+.landmark-callout{position:absolute;pointer-events:none;min-width:90px;max-width:205px;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;filter:drop-shadow(0 2px 9px #000a);transition:opacity .18s;}
+.landmark-name{padding:8px 12px;border:1px solid #efcb8d;background:#142730f2;color:#f3efdf;border-radius:10px;font-size:12px;font-weight:800;text-align:center;line-height:1.22;max-width:205px;word-break:break-word}
+.landmark-korean{display:block;margin-top:3px;font-weight:500;font-size:10px;color:#b9c7c3}
+.landmark-line{height:23px;width:2px;background:#eac17e}
+.landmark-dot{height:20px;width:20px;background:#efc681;box-shadow:0 0 0 4px #f2c98130,0 0 0 1px #fff7e7;border:4px solid #101d25;border-radius:50%}
+.landmark-callout.is-manual .landmark-line{background:#c6edac}.landmark-callout.is-manual .landmark-dot{background:#c6edac;box-shadow:0 0 0 4px #c6edac30}
+.landmark-callout.is-unverified .landmark-name{border-style:dashed}
+.pin-status{color:#cfe6d4;background:#1a3437;border-left:3px solid #a2c799;border-radius:6px;padding:9px 11px;margin-top:10px;line-height:1.5;font-size:11px}
+.pin-status.warning{background:#33332b;border-left-color:#eac17e;color:#f2d5a3}
+.legend{margin-top:10px;color:#819aa1;font-size:10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.legend-dot{display:inline-block;width:10px;height:10px;background:#efc681;border-radius:50%}.legend-dot.manual{background:#c6edac;margin-left:14px}
+@media(max-width:780px){.landmark-name{font-size:11px;max-width:160px;padding:6px 8px}.landmark-line{height:16px}.landmark-dot{height:17px;width:17px}.landmark-callout{max-width:175px}}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"}}</script>
+</head>
+<body>
+<div id="app">
+<header class="header"><div class="logo"><div class="mark">✳</div><div class="brand">BONE LAB<small>3D ANATOMY · LANDMARK EDITION</small></div></div><nav class="topnav" aria-label="학습 모드"><button data-tab="explore" class="on">학습</button><button data-tab="test">시험</button><button data-tab="mistakes">오답</button></nav><div class="count" id="header-count">0 / 0 learned</div></header>
+<div class="workspace">
+<aside class="left"><div class="eyebrow">CHAPTER 06 · STUDY INDEX</div><h2>Find it. Name it.</h2><div class="muted small">영어 의학용어를 먼저, 위치로 기억하세요.</div><input class="search" id="search" placeholder="Search English / 한국어" aria-label="용어 검색"><div class="regionbar" id="regionbar"></div><div class="term-list" id="terms"></div></aside>
+<section class="main" aria-label="회전 가능한 3D 인체 골격"><div id="viewport"></div><div id="landmark-layer" aria-live="polite"></div><div class="mainhead"><div><div class="eyebrow">INTERACTIVE MODEL</div><div class="scene-title" id="scene-title">Whole skeleton</div><div class="scene-sub" id="scene-sub">Rotate · Zoom · Select</div></div><div class="scene-pill" id="model-state">3D model loading</div></div><div class="loading" id="loading"><strong>Discover the bones</strong><p id="loading-msg">실제 인체 골격 3D 데이터를 가져오고 있어요. 처음 한 번은 인터넷 연결이 필요합니다.</p><div class="loader"><b id="loadbar"></b></div><div id="model-fallback">모델에 연결할 수 없습니다. <a href="https://charleeh.github.io/ecorche/" target="_blank" rel="noopener noreferrer">원본 3D 보기</a></div></div><div class="viewer-bottom"><div class="view-hint" id="view-hint">드래그: 회전 · 휠/두 손가락: 확대<br>뼈 선택: 클릭/터치 · 핀은 위치 안내용</div><div class="tools"><button class="iconbtn" id="front">Front</button><button class="iconbtn" id="back">Back</button><button class="iconbtn" id="home">전체</button><button class="iconbtn" id="zoom-in">＋</button><button class="iconbtn" id="zoom-out">－</button></div></div></section>
+<aside class="right"><section id="explore-panel"><div class="side-top"><span class="eyebrow">SELECTED STRUCTURE</span><button class="bookmark" id="bookmark">☆ 저장</button></div><h1 class="big-en" id="detail-name">Scapula</h1><div class="ko" id="detail-ko">어깨뼈</div><div class="divider"></div><div class="subject">LOCATION · POSITION</div><div class="group-name" id="parent-name">Shoulder &amp; arm</div><div class="label-target" id="location-note">3D 뼈를 선택하고 회전해 위치를 확인하세요.</div><div id="pin-status" role="status" class="pin-status">3D 모델 연결을 확인하는 중</div><div class="viewmode"><button id="whole-mode">전체 골격</button><button id="detail-mode" class="on">선택 부위 확대</button></div><div class="divider"></div><div class="switchline"><label for="hide-en">영어 용어 가리기</label><input type="checkbox" id="hide-en" class="toggle"></div><div style="height:15px"></div><button class="secondary" id="reveal-en">영어 이름 확인</button><div style="height:9px"></div><button class="secondary" id="set-pin">✎ 3D 위치 핀 직접 수정</button><div class="notice" id="pin-note">선택한 구조의 3D 위치를 자동으로 안내합니다.</div><button class="secondary" id="reset-pin" style="margin-top:8px">↺ 자동 위치로 되돌리기</button><div class="legend"><span class="legend-dot"></span> 위치 안내 핀 <span class="legend-dot manual"></span> 내가 수정한 핀</div><div class="divider"></div><div class="metric"><span>암기 완료</span><b id="learn-progress">0 / 0</b></div><div class="progress"><div id="progress-bar"></div></div><div style="height:10px"></div><button class="primary" id="learned">✓ 외웠어요</button><div class="hintblock">주황색 핀은 해부학적 위치 가이드이며 소형 구멍의 실제 경계를 뜻하지 않습니다. 부위가 잘 보이지 않으면 3D를 돌리거나 “핀 직접 수정”을 이용하세요. 기록은 브라우저에 보관됩니다.</div></section>
+<section id="test-panel" class="none"><div class="eyebrow">PRACTICE MODE</div><h2 style="font-size:25px;line-height:1.3;margin:10px 0">Test your recall.</h2><p class="muted small" style="line-height:1.5">해당 위치를 보고 영어 의학용어를 직접 입력하세요.</p><div class="qmode"><button data-qmode="typing" class="on">영어 입력</button><button data-qmode="finding">3D 뼈 찾기</button></div><div class="quiz-card"><div class="quiz-number" id="qnum">QUESTION 01</div><div class="question-ko" id="q-ko">어깨뼈</div><div class="find-prompt" id="q-prompt"></div><div id="typing-ui"><input id="answer" class="answer" placeholder="Type the full English term" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="quiz-action"><button class="primary" id="grade">정답 확인</button></div></div><div id="finding-ui" class="none"><div class="notice">3D 모형에서 해당 <b>뼈</b>를 클릭하세요. 돌기·구멍의 세부 위치는 영어 입력 모드로 복습합니다.</div></div><div class="feedback" id="q-feedback"></div><button class="secondary" style="margin-top:8px" id="show-answer">정답 보기</button><button class="secondary" style="margin-top:8px" id="next">다음 문제 →</button></div><div class="hintblock" style="margin-top:15px">정답은 영어 풀네임 기준입니다. 대소문자는 구분하지 않아요.</div></section>
+<section id="mistakes-panel" class="none"><div class="eyebrow">REVIEW MODE</div><h2 style="font-size:24px;margin:10px 0">Wrong answers</h2><p class="muted small">틀린 영어 명칭만 빠르게 다시 외워보세요.</p><div class="metric" style="margin:24px 0"><span>복습할 용어</span><b id="wrong-count">0</b></div><div id="wrong-list"></div><button class="primary" style="margin-top:17px" id="retry">오답만 시험 보기</button><button class="secondary" style="margin-top:9px" id="clear-wrong">오답 기록 초기화</button></section>
+<div class="footnote">BONE LAB v2 · 3D geometry: <a href="https://github.com/Charleeh/ecorche" target="_blank" rel="noopener">Écorché / BodyParts3D / Z-Anatomy</a> · CC BY-SA 4.0. 학습용 자료이며 모델의 작은 구조는 단순화되어 있을 수 있습니다.</div></aside></div></div>
+<script>
+const G=[
+{id:'temporal',en:'Temporal bone',ko:'관자뼈',area:'머리뼈',match:['right temporal bone','temporal bone'],sub:[['External acoustic meatus','바깥귀길','Auditory meatus'],['Styloid process','붓돌기'],['Mastoid process','꼭지돌기']]},
+{id:'occipital',en:'Occipital bone',ko:'뒤통수뼈',area:'머리뼈',match:['occipital bone'],sub:[['Foramen magnum','큰구멍'],['Occipital condyle','뒤통수뼈관절융기'],['Hypoglossal canal','혀밑신경관']]},
+{id:'sphenoid',en:'Sphenoid bone',ko:'나비뼈',area:'머리뼈',match:['sphenoid bone','sphenoid'],sub:[['Sella turcica','터키안'],['Optic canal','시신경관'],['Foramen rotundum','원형구멍'],['Foramen ovale','타원구멍'],['Foramen spinosum','가시구멍'],['Superior orbital fissure','위눈확틈새','Orbital fissure']]},
+{id:'ethmoid',en:'Ethmoid bone',ko:'벌집뼈',area:'머리뼈',match:['ethmoid'],sub:[['Crista galli','닭볏'],['Cribriform plate','체판'],['Olfactory foramina','후각신경구멍','Olfactory foramen'],['Perpendicular plate','수직판'],['Superior nasal concha','위코선반'],['Middle nasal concha','중간코선반']]},
+{id:'atlas',en:'Atlas',ko:'고리뼈',area:'척주·가슴우리',match:['atlas'],sub:[]},
+{id:'axis',en:'Axis',ko:'중쇠뼈',area:'척주·가슴우리',match:['axis'],sub:[['Dens','치아돌기']]},
+{id:'cervical',en:'Cervical vertebra',ko:'목뼈',area:'척주·가슴우리',match:['fifth cervical vertebra','cervical vertebra'],sub:[['Vertebral arch','척추뼈고리'],['Vertebral foramen','척추뼈구멍'],['Transverse foramen','가로구멍'],['Intervertebral foramen','척추사이구멍']]},
+{id:'rib',en:'Rib',ko:'갈비뼈',area:'척주·가슴우리',match:['right fifth rib','right sixth rib','rib'],sub:[['Costal groove','갈비뼈고랑']]},
+{id:'sternum',en:'Sternum',ko:'복장뼈',area:'척주·가슴우리',match:['body of sternum','manubrium'],sub:[['Sternal angle','복장뼈각']]},
+{id:'scapula',en:'Scapula',ko:'어깨뼈',area:'어깨·팔',match:['right scapula','scapula'],sub:[['Acromion','봉우리'],['Coracoid process','부리돌기'],['Glenoid cavity','접시오목'],['Spine of scapula','어깨뼈가시'],['Supraspinous fossa','가시위오목'],['Infraspinous fossa','가시아래오목'],['Subscapular fossa','어깨밑오목'],['Superior angle','위각'],['Inferior angle','아래각'],['Medial border','안쪽모서리'],['Lateral border','가쪽모서리'],['Superior border','위모서리']]},
+{id:'humerus',en:'Humerus',ko:'위팔뼈',area:'어깨·팔',match:['right humerus','humerus'],sub:[['Greater tubercle','큰결절'],['Lesser tubercle','작은결절'],['Deltoid tuberosity','세모근거친면'],['Capitulum','작은머리'],['Trochlea','도르래']]},
+{id:'radius',en:'Radius',ko:'노뼈',area:'어깨·팔',match:['right radius','radius'],sub:[['Styloid process of radius','노뼈붓돌기','Radial styloid process']]},
+{id:'ulna',en:'Ulna',ko:'자뼈',area:'어깨·팔',match:['right ulna','ulna'],sub:[['Styloid process of ulna','자뼈붓돌기','Ulnar styloid process']]},
+{id:'hip',en:'Hip bone',ko:'볼기뼈',area:'골반',match:['right hip bone','hip bone','right coxal bone','coxal bone'],alias:'Coxal bone',sub:[['Ilium','엉덩뼈'],['Ischium','궁둥뼈'],['Pubis','두덩뼈'],['Acetabulum','절구'],['Anterior superior iliac spine','위앞엉덩뼈가시','ASIS'],['Anterior inferior iliac spine','아래앞엉덩뼈가시','AIIS'],['Iliac crest','엉덩뼈능선']]},
+{id:'femur',en:'Femur',ko:'넙다리뼈',area:'다리·발',match:['right femur','femur'],sub:[['Greater trochanter','큰돌기'],['Lesser trochanter','작은돌기']]},
+{id:'tibia',en:'Tibia',ko:'정강뼈',area:'다리·발',match:['right tibia','tibia'],sub:[['Medial malleolus','안쪽복사']]},
+{id:'fibula',en:'Fibula',ko:'종아리뼈',area:'다리·발',match:['right fibula','fibula'],sub:[['Lateral malleolus','가쪽복사']]},
+{id:'calcaneus',en:'Calcaneus',ko:'발꿈치뼈',area:'다리·발',match:['right calcaneus','calcaneus'],sub:[]}
+];
+const GUIDE = {
+ 'temporal-0':{u:[0.92,0.45,0.55],view:'side',caution:true},
+ 'temporal-1':{u:[0.77,0.1,0.73],view:'side',caution:true},
+ 'temporal-2':{u:[0.78,0.19,0.23],view:'side',caution:true},
+ 'occipital-0':{u:[0.48,0.07,0.62],view:'bottom',caution:true},
+ 'occipital-1':{u:[0.68,0.12,0.56],view:'bottom',caution:true},
+ 'occipital-2':{u:[0.59,0.16,0.58],view:'bottom',caution:true},
+ 'sphenoid-0':{u:[0.52,0.73,0.58],view:'top',caution:true},
+ 'sphenoid-1':{u:[0.52,0.75,0.91],view:'front',caution:true},
+ 'sphenoid-2':{u:[0.67,0.49,0.74],view:'front',caution:true},
+ 'sphenoid-3':{u:[0.78,0.35,0.47],view:'bottom',caution:true},
+ 'sphenoid-4':{u:[0.82,0.31,0.35],view:'bottom',caution:true},
+ 'sphenoid-5':{u:[0.56,0.65,0.78],view:'front',caution:true},
+ 'ethmoid-0':{u:[0.52,0.97,0.6],view:'top',caution:true},
+ 'ethmoid-1':{u:[0.5,0.85,0.65],view:'top',caution:true},
+ 'ethmoid-2':{u:[0.52,0.86,0.72],view:'top',caution:true},
+ 'ethmoid-3':{u:[0.49,0.33,0.72],view:'front',caution:true},
+ 'ethmoid-4':{u:[0.66,0.6,0.76],view:'front',caution:true},
+ 'ethmoid-5':{u:[0.68,0.36,0.77],view:'front',caution:true},
+ 'axis-0':{u:[0.5,0.92,0.5],view:'front',caution:true},
+ 'cervical-0':{u:[0.5,0.56,0.13],view:'back',caution:false},
+ 'cervical-1':{u:[0.5,0.55,0.52],view:'top',caution:true},
+ 'cervical-2':{u:[0.92,0.52,0.55],view:'side',caution:true},
+ 'cervical-3':{u:[0.84,0.1,0.45],view:'side',caution:true},
+ 'rib-0':{u:[0.52,0.12,0.45],view:'bottom',caution:true},
+ 'sternum-0':{u:[0.51,0.8,0.96],view:'front',caution:true},
+ 'scapula-0':{u:[0.93,0.91,0.2],view:'back',caution:false},
+ 'scapula-1':{u:[0.85,0.9,0.88],view:'front',caution:false},
+ 'scapula-2':{u:[0.98,0.64,0.51],view:'side',caution:false},
+ 'scapula-3':{u:[0.64,0.74,0.1],view:'back',caution:false},
+ 'scapula-4':{u:[0.38,0.88,0.08],view:'back',caution:false},
+ 'scapula-5':{u:[0.41,0.47,0.1],view:'back',caution:false},
+ 'scapula-6':{u:[0.5,0.48,0.91],view:'front',caution:false},
+ 'scapula-7':{u:[0.16,0.96,0.35],view:'back',caution:false},
+ 'scapula-8':{u:[0.33,0.03,0.25],view:'back',caution:false},
+ 'scapula-9':{u:[0.07,0.5,0.27],view:'back',caution:false},
+ 'scapula-10':{u:[0.94,0.38,0.31],view:'back',caution:false},
+ 'scapula-11':{u:[0.47,0.96,0.38],view:'back',caution:false},
+ 'humerus-0':{u:[0.92,0.94,0.52],view:'front',caution:false},
+ 'humerus-1':{u:[0.56,0.91,0.93],view:'front',caution:false},
+ 'humerus-2':{u:[0.87,0.57,0.82],view:'front',caution:false},
+ 'humerus-3':{u:[0.87,0.045,0.78],view:'front',caution:false},
+ 'humerus-4':{u:[0.34,0.045,0.81],view:'front',caution:false},
+ 'radius-0':{u:[0.85,0.035,0.67],view:'front',caution:false},
+ 'ulna-0':{u:[0.5,0.035,0.48],view:'back',caution:false},
+ 'hip-0':{u:[0.82,0.82,0.46],view:'front',caution:false},
+ 'hip-1':{u:[0.78,0.2,0.23],view:'back',caution:false},
+ 'hip-2':{u:[0.22,0.25,0.83],view:'front',caution:false},
+ 'hip-3':{u:[0.95,0.51,0.66],view:'side',caution:false},
+ 'hip-4':{u:[0.9,0.83,0.95],view:'front',caution:false},
+ 'hip-5':{u:[0.9,0.7,0.94],view:'front',caution:false},
+ 'hip-6':{u:[0.67,0.98,0.48],view:'top',caution:false},
+ 'femur-0':{u:[0.92,0.92,0.54],view:'front',caution:false},
+ 'femur-1':{u:[0.45,0.8,0.15],view:'back',caution:false},
+ 'tibia-0':{u:[0.18,0.04,0.59],view:'front',caution:false},
+ 'fibula-0':{u:[0.87,0.05,0.62],view:'side',caution:false}
+};
+const ITEMS=G.flatMap(g=>[{id:g.id,en:g.en,ko:g.ko,area:g.area,parent:g.id,isBone:true,alias:g.alias||''},...g.sub.map((s,i)=>({id:g.id+'-'+i,en:s[0],ko:s[1],area:g.area,parent:g.id,isBone:false,alias:s[2]||''}))]);
+const $=id=>document.getElementById(id);const T=id=>ITEMS.find(x=>x.id===id);let state={tab:'explore',region:'전체',selection:'scapula',detail:true,hidden:false,qmode:'typing',question:null,questions:[],qpos:0,quizWrongOnly:false,answered:false,pinMode:false};const SKEY='bone-lab-3d-v3';let saved;try{saved=JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){saved={}}saved.learned||=[];saved.wrong||=[];saved.bookmarks||=[];saved.pins||={};const store=()=>{try{localStorage.setItem(SKEY,JSON.stringify(saved))}catch(e){}};const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let modelAdapter=null;const areas=['전체','머리뼈','척주·가슴우리','어깨·팔','골반','다리·발'];
+function setup(){
+ $('regionbar').innerHTML=areas.map(a=>`<button class="chip ${a==='전체'?'on':''}" data-region="${esc(a)}">${a}</button>`).join('');
+ document.querySelectorAll('[data-region]').forEach(b=>b.onclick=()=>{state.region=b.dataset.region;renderTerms();document.querySelectorAll('[data-region]').forEach(x=>x.classList.toggle('on',x===b));});
+ $('search').oninput=renderTerms;
+ document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
+ $('whole-mode').onclick=()=>{state.detail=false;updateView();};$('detail-mode').onclick=()=>{state.detail=true;updateView();};
+ $('hide-en').onchange=e=>{state.hidden=e.target.checked;showDetails();};$('reveal-en').onclick=()=>{state.hidden=false;$('hide-en').checked=false;showDetails();};
+ $('learned').onclick=()=>{const id=state.selection; if(saved.learned.includes(id))saved.learned=saved.learned.filter(x=>x!==id);else saved.learned.push(id);store();showDetails();renderTerms();renderStats();};
+ $('bookmark').onclick=()=>{const id=state.selection;if(saved.bookmarks.includes(id))saved.bookmarks=saved.bookmarks.filter(x=>x!==id);else saved.bookmarks.push(id);store();showDetails();};
+ $('reset-pin').onclick=()=>{delete saved.pins[state.selection];store();showDetails();updatePinStatus();if(modelAdapter)modelAdapter.refreshPin(state.selection);};
+ $('set-pin').onclick=()=>{if(!modelAdapter){$('pin-note').textContent='3D 모델이 연결된 후 사용할 수 있어요.';return}state.pinMode=!state.pinMode;$('set-pin').textContent=state.pinMode?'취소 · 3D 뼈를 클릭':'✎ 3D 위치 핀 직접 수정';$('pin-note').textContent=state.pinMode?'선택한 뼈에서 정확한 위치를 클릭/터치하세요.':'주황색 안내 핀을 다시 보려면 자동 위치로 되돌리기를 누르세요.';};
+ document.querySelectorAll('[data-qmode]').forEach(b=>b.onclick=()=>{state.qmode=b.dataset.qmode;state.quizWrongOnly=false;makeQuiz();});
+ $('grade').onclick=gradeTyping;$('answer').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();state.answered?nextQ():gradeTyping()}});
+ $('show-answer').onclick=()=>{if(!state.question)return;$('q-feedback').className='feedback';$('q-feedback').textContent='정답: '+state.question.en;state.answered=true;};
+ $('next').onclick=nextQ;$('retry').onclick=()=>{state.quizWrongOnly=true;setTab('test');makeQuiz();};$('clear-wrong').onclick=()=>{saved.wrong=[];store();renderWrong();renderStats();};
+ ['front','back','home','zoom-in','zoom-out'].forEach(id=>$(id).onclick=()=>{if(modelAdapter)modelAdapter.action(id);});
+ setTab('explore');selectTerm('scapula');renderStats();updatePinStatus();
+}
+function setTab(tab){state.tab=tab;document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('on',b.dataset.tab===tab));['explore','test','mistakes'].forEach(x=>$(x+'-panel').classList.toggle('none',x!==tab));if(tab==='test')makeQuiz();if(tab==='mistakes')renderWrong();}
+function renderTerms(){let q=$('search').value.trim().toLowerCase();let list=ITEMS.filter(t=>(state.region==='전체'||t.area===state.region)&&(!q||[t.en,t.ko,t.alias,G.find(g=>g.id===t.parent)?.en].join(' ').toLowerCase().includes(q)));let last='',html='';for(const [i,t] of list.entries()){if(t.area!==last){last=t.area;html+=`<div class="grouphead">${esc(last).toUpperCase()}</div>`;}html+=`<button class="term ${state.selection===t.id?'on':''}" data-term="${esc(t.id)}"><span class="term-index">${t.isBone?'B':'·'}</span><span style="flex:1;min-width:0"><div class="term-name">${esc(t.en)}</div><div class="term-sub">${esc(t.ko)}</div></span>${saved.learned.includes(t.id)?'<span class="done-dot">✓</span>':''}</button>`} $('terms').innerHTML=html||'<div class="empty">해당 용어가 없습니다.</div>';document.querySelectorAll('[data-term]').forEach(b=>b.onclick=()=>selectTerm(b.dataset.term));}
+function selectTerm(id){if(!T(id))return;state.detail=true;state.selection=id;state.pinMode=false;$('set-pin').textContent='✎ 3D 위치 핀 직접 수정';showDetails();renderTerms();updateView();updatePinStatus();}
+function showDetails(){let t=T(state.selection),g=G.find(g=>g.id===t.parent);$('detail-name').textContent=state.hidden?'••••••••':t.en;$('detail-ko').textContent=t.ko;$('parent-name').textContent=t.area+' · '+g.en;$('location-note').innerHTML=t.isBone?'<b>3D 뼈 선택</b> · 모형을 회전해 모양과 위치를 익혀 보세요.':`<b>${esc(g.en)}</b>에서 ${esc(t.ko)}의 위치를 찾아보세요.`;$('learned').textContent=saved.learned.includes(t.id)?'✓ 암기 완료 · 취소하기':'✓ 외웠어요';$('bookmark').textContent=saved.bookmarks.includes(t.id)?'★ 저장됨':'☆ 저장';$('pin-note').textContent=saved.pins[t.id]?'● 직접 수정한 핀이 표시됩니다. 원하면 자동 위치로 되돌리세요.':'주황색 3D 핀은 위치 안내용입니다. 경계가 정확히 표현되지 않는 작은 구멍도 있습니다.';}
+
+function updatePinStatus(){
+ const t=T(state.selection);if(!t)return;
+ const manually=!!saved.pins[t.id];const isSub=!t.isBone;
+ const status=$('pin-status');status.classList.toggle('warning',isSub&&!manually);
+ if(manually)status.textContent='● 직접 저장한 위치 핀 · 해당 뼈를 선택하면 항상 표시됩니다.';
+ else if(isSub)status.textContent='● 위치 안내 핀 · 뼈 표면의 대략적인 방향입니다. 교재 그림과 대조해 주세요.';
+ else status.textContent='● 선택한 뼈를 강조 표시합니다. 위치 핀은 뼈 중심을 가리킵니다.';
+ if(modelAdapter&&modelAdapter.groupExists&&!modelAdapter.groupExists(G.find(g=>g.id===t.parent))){
+   status.classList.add('warning');status.textContent='3D에서 해당 뼈를 연결할 수 없습니다. 모델이 로드되었는지 확인해 주세요.';
+ }
+ $('reset-pin').disabled=!manually;
+}
+function renderStats(){$('header-count').textContent=`${saved.learned.length} / ${ITEMS.length} learned`;$('learn-progress').textContent=`${saved.learned.length} / ${ITEMS.length}`;$('progress-bar').style.width=(saved.learned.length/ITEMS.length*100)+'%';$('wrong-count').textContent=saved.wrong.length;}
+function updateView(){let t=T(state.selection),g=G.find(g=>g.id===t.parent);$('scene-title').textContent=state.detail?g.en:'Whole skeleton';$('scene-sub').textContent=state.detail?`${t.en} · 3D focus`:'Rotate · Zoom · Select';$('whole-mode').classList.toggle('on',!state.detail);$('detail-mode').classList.toggle('on',state.detail);if(modelAdapter)modelAdapter.focus(g,state.detail,t.id);updatePinStatus();}
+function renderWrong(){let list=saved.wrong.map(T).filter(Boolean);$('wrong-count').textContent=list.length;$('wrong-list').innerHTML=list.length?list.map(t=>`<button class="term" data-wrong="${t.id}"><span class="term-index">!</span><span><div class="term-name">${esc(t.en)}</div><div class="term-sub">${esc(t.ko)}</div></span></button>`).join(''):'<div class="empty">아직 오답이 없어요. 🎉<br>시험을 보면 틀린 용어가 여기에 모입니다.</div>';document.querySelectorAll('[data-wrong]').forEach(b=>b.onclick=()=>{setTab('explore');selectTerm(b.dataset.wrong)});$('retry').disabled=!list.length;}
+const shuffle=arr=>{let a=arr.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+function makeQuiz(){document.querySelectorAll('[data-qmode]').forEach(b=>b.classList.toggle('on',b.dataset.qmode===state.qmode));const base=state.quizWrongOnly?ITEMS.filter(t=>saved.wrong.includes(t.id)):ITEMS;state.questions=shuffle(base.filter(t=>state.qmode==='typing'||t.isBone));state.qpos=0;displayQ();}
+function displayQ(){let q=state.questions[state.qpos];state.question=q||null;state.answered=false;$('q-feedback').textContent='';$('q-feedback').className='feedback';$('typing-ui').classList.toggle('none',state.qmode!=='typing');$('finding-ui').classList.toggle('none',state.qmode!=='finding');$('answer').value='';$('qnum').textContent=`QUESTION ${String(state.qpos+1).padStart(2,'0')} / ${state.questions.length}`;if(!q){$('q-ko').textContent='No questions';$('q-prompt').textContent='학습하거나 오답을 쌓은 다음 다시 시험을 시작하세요.';$('grade').disabled=true;return;}$('grade').disabled=false;$('q-ko').textContent=state.qmode==='typing'?q.ko:q.en;$('q-prompt').textContent=state.qmode==='typing'?`3D: ${G.find(g=>g.id===q.parent).en} · 영어 풀네임을 쓰세요.`:'3D에서 해당 뼈의 위치를 클릭하세요.';if(modelAdapter){if(state.qmode==='typing')modelAdapter.focus(G.find(g=>g.id===q.parent),true,q.id,true);else modelAdapter.focus(null,false,null,true);}}
+const norm=s=>String(s||'').toLowerCase().replace(/[^a-z]/g,'');
+function record(q,right){if(right){saved.wrong=saved.wrong.filter(x=>x!==q.id);if(!saved.learned.includes(q.id))saved.learned.push(q.id)}else if(!saved.wrong.includes(q.id))saved.wrong.push(q.id);store();renderStats();renderTerms();}
+function gradeTyping(){let q=state.question;if(!q||state.answered)return;let value=$('answer').value;if(!value.trim()){ $('q-feedback').textContent='영어 명칭을 입력해 주세요.';return;}let ok=norm(q.en)===norm(value);record(q,ok);state.answered=true;$('q-feedback').className='feedback '+(ok?'ok':'bad');$('q-feedback').textContent=ok?'✓ Correct!':`✕ 정답: ${q.en}`;}
+function nextQ(){if(!state.questions.length)return;state.qpos=(state.qpos+1)%state.questions.length;displayQ();}
+window.boneApp={state,G,T,GUIDE,selectTerm,modelClick(meshName,point,mesh){if(state.pinMode){const t=T(state.selection);const g=G.find(g=>g.id===t.parent);if(!modelAdapter.isGroupMesh(mesh,g)){$('pin-note').textContent='선택한 뼈가 아닌 다른 뼈를 클릭했어요. 밝게 표시된 뼈를 클릭하세요.';return}let local=mesh.worldToLocal(point.clone());saved.pins[t.id]={mesh:mesh.name,p:[local.x,local.y,local.z]};store();state.pinMode=false;$('set-pin').textContent='✎ 3D 위치 핀 직접 수정';$('pin-note').textContent='✓ 내가 지정한 핀을 저장했어요.';modelAdapter.refreshPin(t.id);updatePinStatus();return;}if(state.tab==='test'&&state.qmode==='finding'&&state.question&&!state.answered){let correct=modelAdapter.isGroupMesh(mesh,G.find(g=>g.id===state.question.parent));record(state.question,correct);state.answered=true;$('q-feedback').className='feedback '+(correct?'ok':'bad');$('q-feedback').textContent=correct?'✓ Correct!':`✕ 정답: ${state.question.en}`;return;}if(state.tab==='explore'){let group=G.find(g=>modelAdapter.isGroupMesh(mesh,g));if(group){state.detail=true;selectTerm(group.id);}}},modelReady(adapter){modelAdapter=adapter;$('loading').classList.add('off');$('model-state').textContent='● 3D ready';$('model-state').style.color='#d6ecb0';updateView();updatePinStatus();if(state.tab==='test')displayQ();},modelProgress(p){$('loadbar').style.width=Math.min(100,p)+'%'},modelError(e){$('loading-msg').textContent='3D 파일 연결에 실패했습니다. 인터넷 연결을 확인해 주세요. 영어 용어 암기 기능은 계속 사용할 수 있어요.';$('model-fallback').style.display='block';$('model-state').textContent='3D offline';console.warn(e);}};setup();
+</script>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {MeshoptDecoder} from 'three/addons/libs/meshopt_decoder.module.js';
+const app=window.boneApp,holder=document.getElementById('viewport'),markerLayer=document.getElementById('landmark-layer');
+let width=holder.clientWidth||800,height=holder.clientHeight||600;
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(37,width/height,.01,100);
+const homePos=new THREE.Vector3(1.4,1.10,3.65),homeTarget=new THREE.Vector3(0,.92,0);
+camera.position.copy(homePos);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));renderer.setSize(width,height);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.55;holder.appendChild(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0xfff3e0,0x344b55,2.4));
+let key=new THREE.DirectionalLight(0xffffff,2.3);key.position.set(3,4,6);scene.add(key);
+let rim=new THREE.DirectionalLight(0xb9e6ff,1.15);rim.position.set(-2,2,-4);scene.add(rim);
+const controls=new OrbitControls(camera,renderer.domElement);controls.target.copy(homeTarget);controls.enableDamping=true;controls.dampingFactor=.075;controls.minDistance=.08;controls.maxDistance=12;
+const bones=[],boneByName=new Map();let model=null,activeGroup=null,activeId=null,focusMeshes=[],flight=null,modelReady=false,selectedMarker=null;
+const normalMat=new THREE.MeshStandardMaterial({color:0xebe5d9,roughness:.73});
+const ghostMat=new THREE.MeshStandardMaterial({color:0x91a4a7,roughness:.9,transparent:true,opacity:.065,depthWrite:false,side:THREE.DoubleSide});
+const pickMat=new THREE.MeshStandardMaterial({color:0xe1ecbc,roughness:.62,emissive:0x334b2b,emissiveIntensity:.18,side:THREE.DoubleSide});
+const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
+const labelOf=m=>String(m.userData?.name||m.name||'').trim().replaceAll('_',' ');
+const canon=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+function groupMeshes(group){
+ if(!group)return [];
+ // Match on original anatomical name from GLB metadata (Three.js may alter node names).
+ const candidates=group.match||[];
+ if(group.id==='sternum')return bones.filter(m=>['bodyofsternum','manubrium','xiphoidprocess'].includes(canon(labelOf(m))));
+ for(const text of candidates){const key=canon(text);let exact=bones.filter(m=>canon(labelOf(m))===key);if(exact.length)return exact;}
+ for(const text of candidates){const key=canon(text);let found=bones.filter(m=>canon(labelOf(m)).includes(key));if(found.length){let right=found.filter(m=>m.userData?.side==='right'||/^Right /i.test(labelOf(m)));return right.length?right:found.slice(0,2);}}
+ return [];
+}
+function isGroupMesh(mesh,group){return groupMeshes(group).includes(mesh);}
+function groupExists(g){return groupMeshes(g).length>0;}
+function tween(pos,target){flight={fromP:camera.position.clone(),toP:pos,fromT:controls.target.clone(),toT:target,start:performance.now()};}
+function bbox(m){return new THREE.Box3().setFromObject(m);}
+function focusBbox(ms){const b=new THREE.Box3();for(const m of ms)b.expandByObject(m);return b;}
+function guideConfig(id){return window.boneApp.GUIDE[id]||null;}
+function viewDirection(view,center){
+ switch(view){case 'back':return new THREE.Vector3(.12,.10,-1).normalize();
+ case 'front':return new THREE.Vector3(.12,.08,1).normalize();
+ case 'side':return new THREE.Vector3(center.x>=0?1:-1,.08,.2).normalize();
+ case 'bottom':return new THREE.Vector3(.16,-1,.12).normalize();
+ case 'top':return new THREE.Vector3(.15,1,.15).normalize();
+ default:return new THREE.Vector3(center.x>=0?.46:-.46,.20,1).normalize();}
+}
+// A guide pin points at a vertex ON the chosen bone, never at an empty coordinate.
+// Normalized positional guides are educational approximations, NOT verified precise foramina locations.
+function guidePoint(id,meshes){
+ if(!meshes.length)return null;
+ const cfg=guideConfig(id),feature=cfg?.u||[.5,.5,.5];
+ let best=null,bestScore=Infinity;
+ for(const mesh of meshes){
+  const b=bbox(mesh),min=b.min,max=b.max;
+  const target=new THREE.Vector3(min.x+(max.x-min.x)*feature[0],min.y+(max.y-min.y)*feature[1],min.z+(max.z-min.z)*feature[2]);
+  // Pin the actual visible geometry, using a weighted nearest-vertex search.
+  const pos=mesh.geometry.getAttribute('position');
+  if(!pos)continue;
+  const point=new THREE.Vector3(),world=new THREE.Vector3();
+  const stride=Math.max(1,Math.floor(pos.count/22000));
+  for(let i=0;i<pos.count;i+=stride){
+   point.fromBufferAttribute(pos,i);world.copy(point).applyMatrix4(mesh.matrixWorld);
+   const dx=(world.x-target.x)/(Math.max(.012,max.x-min.x));
+   const dy=(world.y-target.y)/(Math.max(.012,max.y-min.y));
+   const dz=(world.z-target.z)/(Math.max(.012,max.z-min.z));
+   const score=dx*dx+dy*dy+dz*dz;
+   if(score<bestScore){bestScore=score;best=world.clone();}
+  }
+ }
+ return best;
+}
+function refreshPin(id,testing){
+ selectedMarker=null;markerLayer.replaceChildren();
+ if(testing||!id||!modelReady)return;
+ const t=app.T(id),g=app.G.find(x=>x.id===t?.parent);
+ if(!t||!g)return;
+ const selected=groupMeshes(g);
+ if(!selected.length)return;
+ let storage={};try{storage=JSON.parse(localStorage.getItem('bone-lab-3d-v3')||'{}')}catch(e){}
+ const custom=storage?.pins?.[id];let point=null;
+ if(custom){let m=boneByName.get(custom.mesh);if(m&&Array.isArray(custom.p))point=m.localToWorld(new THREE.Vector3(...custom.p));}
+ if(!point)point=guidePoint(id,selected);
+ if(!point)return;
+ selectedMarker={point,id,manual:!!custom};
+ const wrap=document.createElement('div');wrap.className='landmark-callout '+(custom?'is-manual':'is-auto')+(guideConfig(id)?.caution?' is-unverified':'');
+ const name=document.createElement('div');name.className='landmark-name';name.textContent=t.en;
+ const ko=document.createElement('span');ko.className='landmark-korean';ko.textContent=t.ko;
+ name.appendChild(ko);
+ const stem=document.createElement('div');stem.className='landmark-line';
+ const dot=document.createElement('div');dot.className='landmark-dot';
+ wrap.append(name,stem,dot);markerLayer.appendChild(wrap);selectedMarker.element=wrap;
+ placeMarker();
+}
+function placeMarker(){
+ if(!selectedMarker?.element)return;
+ const v=selectedMarker.point.clone().project(camera);
+ const w=holder.clientWidth,h=holder.clientHeight;
+ if(!w||!h||v.z>1||v.z< -1){selectedMarker.element.style.display='none';return;}
+ selectedMarker.element.style.display='flex';
+ const x=Math.max(90,Math.min(w-90,(v.x+1)*w/2));
+ const y=Math.max(145,Math.min(h-80,(1-v.y)*h/2));
+ selectedMarker.element.style.left=x+'px';selectedMarker.element.style.top=y+'px';
+}
+function focus(g,detail,id,testing=false){
+ activeGroup=g;activeId=id;focusMeshes=detail?groupMeshes(g):[];
+ for(const m of bones){m.material=(detail?(focusMeshes.includes(m)?pickMat:ghostMat):normalMat);}
+ if(!detail){refreshPin(null,true);tween(homePos.clone(),homeTarget.clone());return;}
+ if(!focusMeshes.length){refreshPin(null,true);tween(homePos.clone(),homeTarget.clone());return;}
+ const b=focusBbox(focusMeshes),center=b.getCenter(new THREE.Vector3());
+ const cfg=guideConfig(id);
+ const dir=viewDirection(cfg?.view,center);
+ const size=b.getSize(new THREE.Vector3()),r=Math.max(.028,size.length()*.5);
+ const dist=Math.max(.17,r*2.6); // shoulder landmarks get closer without hiding scene
+ const pinTarget=(id&&!testing)?guidePoint(id,focusMeshes):null;
+ const target=pinTarget?center.clone().lerp(pinTarget,.32):center;
+ tween(target.clone().addScaledVector(dir,dist),target);
+ refreshPin(id,testing);
+}
+function action(id){
+ if(id==='home'){focus(null,false,null);return;}
+ if(id==='front'||id==='back'){
+   const distance=camera.position.distanceTo(controls.target);
+   tween(controls.target.clone().add(new THREE.Vector3(0,0,id==='front'?distance:-distance)),controls.target.clone());return;
+ }
+ const v=camera.position.clone().sub(controls.target);v.multiplyScalar(id==='zoom-in'?.74:1.35);camera.position.copy(controls.target).add(v);
+}
+let down=null;
+renderer.domElement.addEventListener('pointerdown',e=>down={x:e.clientX,y:e.clientY});
+renderer.domElement.addEventListener('pointerup',e=>{
+ if(!down||Math.hypot(down.x-e.clientX,down.y-e.clientY)>9){down=null;return;}down=null;
+ const rect=renderer.domElement.getBoundingClientRect();
+ mouse.set(((e.clientX-rect.left)/rect.width)*2-1,-((e.clientY-rect.top)/rect.height)*2+1);ray.setFromCamera(mouse,camera);
+ // If user is placing a pin, ignore other bones/transparent meshes. Otherwise only raycast selected/highlighted group in study view.
+ const isPinMode=app.state.pinMode;
+ const candidates=isPinMode&&activeGroup?groupMeshes(activeGroup):bones;
+ const hit=ray.intersectObjects(candidates,false)[0];
+ if(hit)app.modelClick(labelOf(hit.object),hit.point,hit.object);
+});
+const resize=new ResizeObserver(()=>{let w=holder.clientWidth,h=holder.clientHeight;if(w&&h){camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h);placeMarker();}});resize.observe(holder);
+function tick(now){requestAnimationFrame(tick);
+ if(flight){let t=Math.min(1,(now-flight.start)/640),u=1-Math.pow(1-t,3);camera.position.lerpVectors(flight.fromP,flight.toP,u);controls.target.lerpVectors(flight.fromT,flight.toT,u);if(t>=1)flight=null;}
+ controls.update();placeMarker();renderer.render(scene,camera);
+}
+requestAnimationFrame(tick);
+const loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+const urls=[
+ 'https://charleeh.github.io/ecorche/model/ecorche.meshopt.glb',
+ 'https://cdn.jsdelivr.net/gh/Charleeh/ecorche@main/model/ecorche.meshopt.glb',
+ 'https://raw.githubusercontent.com/Charleeh/ecorche/main/model/ecorche.meshopt.glb'
+];
+function loadModel(n=0){if(n>=urls.length){app.modelError('all model URLs failed');return;}
+ loader.load(urls[n],gltf=>{
+  model=gltf.scene;scene.add(model);model.updateMatrixWorld(true);
+  model.traverse(o=>{
+   if(o.isMesh){
+    if(o.userData?.layer==='skeleton'&&o.userData?.tissue==='bone'){
+     o.material=normalMat;bones.push(o);
+     boneByName.set(o.name,o);boneByName.set(labelOf(o),o);
+    }else o.visible=false;
+   }
+  });
+  if(!bones.length){app.modelError('bone meshes missing');return;}
+  modelReady=true;
+  const missing=app.G.filter(g=>groupMeshes(g).length===0);
+  if(missing.length)console.warn('Unmatched bone groups:',missing.map(x=>x.en));
+  app.modelReady({focus,action,isGroupMesh,refreshPin,groupExists});
+ },e=>{if(e.total)app.modelProgress(Math.round(e.loaded/e.total*100));else app.modelProgress(Math.min(92,Math.floor(e.loaded/60000)));},err=>{console.warn('Model endpoint failed',urls[n],err);loadModel(n+1);});
+}
+loadModel();
+</script>
+</body>
+</html>
